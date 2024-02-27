@@ -1,5 +1,6 @@
 package org.t246osslab.easybuggy.troubles;
 
+import io.github.pixee.security.SystemCommand;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -110,7 +111,7 @@ public class EndlessWaitingServlet extends AbstractServlet {
             fileWriter.close();
             if (!osName.toLowerCase().startsWith("windows")) {
                 Runtime runtime = Runtime.getRuntime();
-                runtime.exec("chmod 777 " + batFile.getAbsolutePath());
+                SystemCommand.runCommand(runtime, "chmod 777 " + batFile.getAbsolutePath());
             }
         } catch (Exception e) {
             log.error("Exception occurs: ", e);

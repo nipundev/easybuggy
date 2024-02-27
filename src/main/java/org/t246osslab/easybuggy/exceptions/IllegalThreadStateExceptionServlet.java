@@ -1,5 +1,6 @@
 package org.t246osslab.easybuggy.exceptions;
 
+import io.github.pixee.security.SystemCommand;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -16,7 +17,7 @@ public class IllegalThreadStateExceptionServlet extends AbstractServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         Runtime rt = Runtime.getRuntime();
-        Process proc = rt.exec("javac");
+        Process proc = SystemCommand.runCommand(rt, "javac");
         proc.exitValue();
     }
 }

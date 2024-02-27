@@ -20,6 +20,7 @@
 		<jvm.args.gc.log.file.rotation>-XX:+UseGCLogFileRotation</jvm.args.gc.log.file.rotation>
 		<jvm.args.number.of.gc.log.files>-XX:NumberOfGCLogFiles=5</jvm.args.number.of.gc.log.files>
 		<jvm.args.gc.log.file.size>-XX:GCLogFileSize=10M</jvm.args.gc.log.file.size>
+		<versions.java-security-toolkit>1.1.2</versions.java-security-toolkit>
 	</properties>
 
 	<profiles>
@@ -125,6 +126,10 @@
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
 			<version>1.5.1</version>
+		</dependency>
+		<dependency>
+			<groupId>io.github.pixee</groupId>
+			<artifactId>java-security-toolkit</artifactId>
 		</dependency>
 	</dependencies>
 	
@@ -312,4 +317,13 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>io.github.pixee</groupId>
+				<artifactId>java-security-toolkit</artifactId>
+				<version>${versions.java-security-toolkit}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>
