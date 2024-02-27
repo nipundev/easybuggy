@@ -1,5 +1,6 @@
 package org.t246osslab.easybuggy.troubles;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -50,7 +51,7 @@ public class FileDescriptorLeakServlet extends AbstractServlet {
             int headerLength = bodyHtml.length();
             String line;
             long currentLineNum = 0;
-            while ((line = br.readLine()) != null) {
+            while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
                 if (count - currentLineNum <= MAX_DISPLAY_COUNT) {
                     bodyHtml.insert(headerLength, line);
                 }

@@ -1,5 +1,6 @@
 package org.t246osslab.easybuggy.troubles;
 
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -125,7 +126,7 @@ public class EndlessWaitingServlet extends AbstractServlet {
         BufferedReader br = new BufferedReader(new InputStreamReader(is));
         try {
             while (true) {
-                String line = br.readLine();
+                String line = BoundedLineReader.readLine(br, 5_000_000);
                 if (line == null) {
                     break;
                 }
