@@ -1,5 +1,6 @@
 package org.t246osslab.easybuggy.vulnerabilities;
 
+import io.github.pixee.security.Newlines;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -54,7 +55,7 @@ public class NullByteInjectionServlet extends AbstractServlet {
             String mimeType = ctx.getMimeType(file.getAbsolutePath());
             res.setContentType(mimeType != null ? mimeType : "application/octet-stream");
             res.setContentLength((int) file.length());
-            res.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
+            res.setHeader("Content-Disposition", Newlines.stripAll("attachment; filename=\"" + fileName + "\""));
 
             os = res.getOutputStream();
             byte[] bufferData = new byte[1024];
