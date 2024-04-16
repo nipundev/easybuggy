@@ -1,5 +1,7 @@
 package org.t246osslab.easybuggy.troubles;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -28,7 +30,7 @@ public class NetworkSocketLeakServlet extends AbstractServlet {
             if (pingURL == null) {
                 pingURL = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + "/ping";
             }
-            url = new URL(pingURL);
+            url = Urls.create(pingURL, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
 
             long start = System.currentTimeMillis();
             connection = (HttpURLConnection) url.openConnection();
