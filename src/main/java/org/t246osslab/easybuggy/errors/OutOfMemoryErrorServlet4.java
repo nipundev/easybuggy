@@ -1,6 +1,7 @@
 package org.t246osslab.easybuggy.errors;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.util.Properties;
 import java.util.Random;
 
@@ -19,7 +20,7 @@ public class OutOfMemoryErrorServlet4 extends AbstractServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
         Properties properties = System.getProperties();
-        Random r = new Random();
+        Random r = new SecureRandom();
         while (true) {
             properties.put(r.nextInt(), "value");
         }
